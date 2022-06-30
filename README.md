@@ -16,7 +16,7 @@ The core work is done by the `action-updateNonHaloPRNs.sh` script file. This scr
 ``` sh
 ./action-updateNonHaloPRNs.sh "the_tenure_id_of_the_record" "new_PRN_value"
 ```
-Once it gets the 2 required parameters, it uses the __tenure id__ to fetch the _(finance)_ __account id__. Once it has the account id, it uses it to specify what record in the __Accounts__ table needs updating & updates it with the provided _new PRN__ value.
+Once it gets the 2 required parameters, it uses the __tenure id__ to fetch the _(finance)_ __account id__. Once it has the account id, it uses it to specify what record in the __Accounts__ table needs updating & updates it with the provided __new PRN__ value.
 
 # Using the script
 You should not use the `action-updateNonHaloPRNs.sh` directly, but rather run it via the `updateScript.sh`. You should use the _Google Sheets_ or _MS Office Excel_ to concatenate the record data from __bad PRNs__ spreadsheet in such a way that the result would be in a form of `./action-updateNonHaloPRNs.sh "tenureId_1" "newPRN_1"`. Once you have your update commands column, just copy out the entire column into the `updateScript.sh` file.
