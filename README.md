@@ -31,5 +31,5 @@ You can uncomment the `set -e` line at the top of the `updateScript.sh` to termi
 
 # Extra Notes
  - Do not run this against the bad PRN records taken from HALO. HALO cases are an entirely different edge case that either needs a similar, yet separate script.
- - Don't have multiple environment variables uncommented at the same time within the `.env` file. The custom function that is written to extract environment variables from the `.env` file is __assuming__ that only a single __uncommented__ environment variable with the same name exists.
+ - Don't have multiple environment variables that have identical names uncommented at the same time within the `.env` file. The custom function that is written to extract environment variables from the `.env` file is __assuming__ that only a single __uncommented__ environment variable with the same name exists.
  - The script could in theory read a CSV file and there wouldn't be a needed for string manipulation in Google Sheets. However, adding such functionality would take a considerable effort, which does not justify the effort it would save.
