@@ -31,12 +31,11 @@ result=$(curl -sS --location --request PATCH "$baseUrl/accounts/$accountId" \
       \"path\": \"paymentReference\",
       \"op\": \"replace\"
     }
-  ]" | \
-  jq '. | {account_id: .id, tenure_id: .targetId, new_payment_ref: .paymentReference}'
+  ]"
 )
 
 updatedAccId=$(echo "$result" | jq '.account_id')
 
 [[ $updatedAccId != *null* ]] \
-  && echo $result | jq '.' \
+  && echo "$result" | jq '. | {account_id: .id, tenure_id: .targetId, new_payment_ref: .paymentReference}' \
   || (echo -e "\e[5m\033[31mUpdate failed!\033[0m TenureId=$tenureId;\nResult: $result;"; exit 1;)
