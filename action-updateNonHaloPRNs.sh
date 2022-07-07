@@ -8,9 +8,9 @@ function get_env_var {
   grep -oP "^$key=\K[^\s]+$" '.env'
 }
 
-baseUrl="$(get_env_var 'BASEURL')"
-getToken="$(get_env_var 'GETTOKEN')"
-patchToken="$(get_env_var 'PATCHTOKEN')"
+baseUrl="$(get_env_var 'ACCOUNTBASEURL')"
+getToken="$(get_env_var 'ACCOUNTGETTOKEN')"
+patchToken="$(get_env_var 'ACCOUNTPATCHTOKEN')"
 
 accountId=$(curl -sS --location --request GET "$baseUrl/accounts?targetId=$tenureId" \
   --header "Authorization: Bearer $getToken" \
@@ -34,8 +34,8 @@ result=$(curl -sS --location --request PATCH "$baseUrl/accounts/$accountId" \
   ]"
 )
 
-updatedAccId=$(echo "$result" | jq '.account_id')
+updatedAccId=$(echo "$result" | jq '.id')
 
 [[ $updatedAccId != *null* ]] \
-  && echo "$result" | jq '. | {account_id: .id, tenure_id: .targetId, new_payment_ref: .paymentReference}' \
+  && (echo "$result" | jq '. | {account_id: .id, tenure_id: .targetId, new_payment_ref: .paymentReference}') \
   || (echo -e "\e[5m\033[31mUpdate failed!\033[0m TenureId=$tenureId;\nResult: $result;"; exit 1;)
