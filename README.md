@@ -1,5 +1,5 @@
 # Payment Reference Number update Script
-This script is used to update the incorrect payment reference numbers within the 'Accounts' DynamoDB table records. It doesn't update the DynamoDB table directly, but instead it uses the account-api's PATCH endpoint to do the job.
+This script is used to update the incorrect payment reference numbers within the 'Accounts' DynamoDB table records __(and to create missing account records)__. It doesn't update the DynamoDB table directly, but instead it uses the account-api's POST and PATCH endpoints to do the job.
 
 # Setup
 1. Make sure you have the `jq` installed. You can do this by following the official instructions found [here](https://stedolan.github.io/jq/download/).
